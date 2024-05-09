@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    jdbcUrl: jdbc:postgresql://localhost:5432/spring_batch
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  batch:
+    jdbc:
+      initialize-schema: always
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
+    show-sql: true
+    open-in-view: false
+app:
+  datasource:
+    jdbcUrl: jdbc:postgresql://localhost:5432/migracao_dados
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
