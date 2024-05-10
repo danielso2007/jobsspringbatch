@@ -1,0 +1,9 @@
+spring:
+  flyway:
+      url: jdbc:postgresql://${DB_HOST_APP:localhost}:${DB_PORT_APP:5432}/${DATA_BASE:migracao_dados}
+      user: ${DB_USER_APP:postgres}
+      password: ${DB_PASSWORD_APP:postgres}
+      locations: classpath:db/migration
+      baselineOnMigrate: true
+      validateOnMigrate: true
+      enabled: true

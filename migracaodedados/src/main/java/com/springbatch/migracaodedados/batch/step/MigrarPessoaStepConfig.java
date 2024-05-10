@@ -17,22 +17,22 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MigrarPessoaStepConfig {
 
-	@Qualifier("transactionManagerApp")
-	private final PlatformTransactionManager transactionManagerApp;
-	
-	@Bean
-	public Step migrarPessoaStep(JobRepository jobRepository, 
-			ItemReader<Pessoa> arquivoPessoaReader,
-			ItemWriter<Pessoa> pessoaWriter,
-			ItemProcessor<Pessoa, Pessoa> pessoaProcessor) {
-		return new StepBuilder("migrarPessoaStep", jobRepository)
-				// Para mostrar o uso de memória
-				.<Pessoa, Pessoa>chunk(1000, transactionManagerApp)
-				.reader(arquivoPessoaReader)
-				// Para mostrar o uso de CPU
-				// .processor(pessoaProcessor)
-				.writer(pessoaWriter)
-				.transactionManager(transactionManagerApp)
-				.build();
-	}
+    @Qualifier("transactionManagerApp")
+    private final PlatformTransactionManager transactionManagerApp;
+    
+    @Bean
+    public Step migrarPessoaStep(JobRepository jobRepository, 
+            ItemReader<Pessoa> arquivoPessoaReader,
+            ItemWriter<Pessoa> pessoaWriter,
+            ItemProcessor<Pessoa, Pessoa> pessoaProcessor) {
+        return new StepBuilder("migrarPessoaStep", jobRepository)
+                // Para mostrar o uso de memória
+                .<Pessoa, Pessoa>chunk(1000, transactionManagerApp)
+                .reader(arquivoPessoaReader)
+                // Para mostrar o uso de CPU
+                // .processor(pessoaProcessor)
+                .writer(pessoaWriter)
+                .transactionManager(transactionManagerApp)
+                .build();
+    }
 }

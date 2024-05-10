@@ -10,9 +10,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DadosBancarios {
-	private int id;
-	private int pessoaId;
-	private int agencia;
-	private int conta;
-	private int banco;
+    private int id;
+    private int pessoaId;
+    private int agencia;
+    private int conta;
+    private int banco;
 }

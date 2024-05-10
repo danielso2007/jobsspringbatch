@@ -6,10 +6,8 @@ import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
 @ActiveProfiles("test")
-class MigracaoDeDadosJobApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
+class MigracaoDeDadosJobApplicationTests extends AbstractIntegrationTest {
+    @Test
+    void contextLoads() {
+    }
 }

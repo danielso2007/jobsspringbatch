@@ -1,8 +1,8 @@
 spring:
   datasource:
-    jdbcUrl: jdbc:postgresql://localhost:5432/spring_batch
-    username: postgres
-    password: postgres
+    jdbcUrl: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DATA_BASE:spring_batch}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
   batch:
     jdbc:
@@ -13,9 +13,18 @@ spring:
     generate-ddl: true
     show-sql: true
     open-in-view: false
+  flyway:
+      url: jdbc:postgresql://${DB_HOST_APP:localhost}:${DB_PORT_APP:5432}/${DATA_BASE:migracao_dados}
+      user: ${DB_USER_APP:postgres}
+      password: ${DB_PASSWORD_APP:postgres}
+      locations: classpath:db/migration
+      baselineOnMigrate: true
+      validateOnMigrate: true
+      clean-disabled: false
+      enabled: true
 app:
   datasource:
-    jdbcUrl: jdbc:postgresql://localhost:5432/migracao_dados
-    username: postgres
-    password: postgres
+    jdbcUrl: jdbc:postgresql://${DB_HOST_APP:localhost}:${DB_PORT_APP:5432}/${DATA_BASE:migracao_dados}
+    username: ${DB_USER_APP:postgres}
+    password: ${DB_PASSWORD_APP:postgres}
     driver-class-name: org.postgresql.Driver
