@@ -21,3 +21,9 @@ Projeto que monitora uma pasta e executa um Job quando o arquivo é copiado.
 Projeto que tirado do doc do spring batch.
 
 [batchprocessing](https://github.com/danielso2007/jobsspringbatch/tree/main/batchprocessing)
+
+## batch Processing Spring Data
+
+Projeto que tirado do doc do spring batch.
+
+[batchProcessingSpringData](https://github.com/danielso2007/jobsspringbatch/tree/main/batchProcessingSpringData)
