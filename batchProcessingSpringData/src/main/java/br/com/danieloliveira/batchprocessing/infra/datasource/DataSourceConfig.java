@@ -21,11 +21,13 @@ public class DataSourceConfig {
     private String username;
     @Value("${spring.datasource.password}")
     private String password;
+
     @Primary
     @Bean
     public DataSourceTransactionManager transactionManager() {
         return new DataSourceTransactionManager(dataSource());
     }
+
     @Primary
     @Bean
     public EntityManagerFactory entityManagerFactory() {
@@ -36,6 +38,7 @@ public class DataSourceConfig {
         emf.afterPropertiesSet();
         return emf.getObject();
     }
+
     @Primary
     @Bean
     public DataSource dataSource() {
