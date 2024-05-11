@@ -74,11 +74,11 @@ public class VisitorsBatchConfig {
 
     @Bean
     public LineMapper<VisitorsDto> linMapper() {
-        val defaultLineMapper = new DefaultLineMapper<VisitorsDto>();
         val lineTokenizer = new DelimitedLineTokenizer();
         lineTokenizer.setDelimiter(",");
         lineTokenizer.setNames("visitorId", "firstName", "lastName", "emailAddress", "phoneNumber", "address", "visitDate");
         lineTokenizer.setStrict(false);
+        val defaultLineMapper = new DefaultLineMapper<VisitorsDto>();
         defaultLineMapper.setLineTokenizer(lineTokenizer);
         defaultLineMapper.setFieldSetMapper(new VisitorsFieldSetMapper());
         return defaultLineMapper;

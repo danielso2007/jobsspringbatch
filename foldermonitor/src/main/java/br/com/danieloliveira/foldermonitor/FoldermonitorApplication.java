@@ -17,6 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +52,7 @@ public class FoldermonitorApplication {
     }
 
     @Scheduled(fixedRate = 2000)
+    @SuppressFBWarnings(value = "PATH_TRAVERSAL_IN", justification = "É preciso passar o parâmetro do Paths")
     public void runJob() {
         val path = Paths.get(local);
         WatchKey key;
