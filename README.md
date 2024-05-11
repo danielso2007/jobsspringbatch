@@ -13,3 +13,9 @@ Projeto simples de migração de dados.
 Projeto que monitora uma pasta e executa um Job quando o arquivo é copiado.
 
 [foldermonitor](https://github.com/danielso2007/jobsspringbatch/tree/main/foldermonitor)
+
+## Projeto de batch processing
+
+Projeto que tirado do doc do spring batch.
+
+[batchprocessing](https://github.com/danielso2007/jobsspringbatch/tree/main/batchprocessing)
