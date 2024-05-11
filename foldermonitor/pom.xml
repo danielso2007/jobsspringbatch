@@ -11,7 +11,7 @@
     </parent>
     <groupId>br.com.danieloliveira</groupId>
     <artifactId>foldermonitor</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0</version>
     <name>foldermonitor</name>
     <description>Projeto exemplo de Job</description>
 

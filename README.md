@@ -1,3 +1,5 @@
+[![Teste do projeto](https://github.com/danielso2007/jobsspringbatch/actions/workflows/maven-publish.yml/badge.svg)](https://github.com/danielso2007/jobsspringbatch/actions/workflows/maven-publish.yml)
+
 # jobsspringbatch
 
 Estudo de otimização de desempenho para jobs Spring Batch.
