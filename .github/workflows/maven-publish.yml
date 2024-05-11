@@ -1,0 +1,238 @@
+# This workflow will build a package using Maven and then publish it to GitHub packages when a release is created
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
+
+name: Teste do projeto
+
+on:
+  push:
+    branches: [ "main", "release/**" ]
+    tags:        
+    - v*
+    paths-ignore:
+    - '**.md'
+    - '**.sh'
+    - '**.json'
+  pull_request:
+    branches: [ "main", "release/**" ]
+    tags:        
+    - v*
+    paths-ignore:
+    - '**.md'
+    - '**.sh'
+    - '**.json'
+
+jobs:
+  checkstyle-migracaodedados:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando checkstyle
+      run: mvn checkstyle:check -pl migracaodedados -Dmaven.test.skip=true
+
+  pmd-migracaodedados:
+    needs: ["checkstyle-migracaodedados"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando PMD
+      run: mvn pmd:check -pl migracaodedados -Dmaven.test.skip=true
+
+  spotbugs-migracaodedados:
+    needs: ["pmd-migracaodedados"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando spotbugs
+      run: mvn spotbugs:check -pl migracaodedados -Dmaven.test.skip=true
+
+  test-migracaodedados:
+    needs: ["spotbugs-migracaodedados"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Teste do projeto
+      run: mvn -B test -pl migracaodedados
+
+  build-migracaodedados:
+    needs: ["test-migracaodedados"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build do projeto
+      run: mvn -B package -pl migracaodedados -Dmaven.test.skip=true
+
+# ---------------------------------------
+  checkstyle-foldermonitor:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando checkstyle
+      run: mvn checkstyle:check -pl foldermonitor -Dmaven.test.skip=true
+
+  pmd-foldermonitor:
+    needs: ["checkstyle-foldermonitor"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando PMD
+      run: mvn pmd:check -pl foldermonitor -Dmaven.test.skip=true
+
+  spotbugs-foldermonitor:
+    needs: ["pmd-foldermonitor"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando spotbugs
+      run: mvn spotbugs:check -pl foldermonitor -Dmaven.test.skip=true
+
+  test-foldermonitor:
+    needs: ["spotbugs-foldermonitor"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Teste do projeto
+      run: mvn -B test -pl foldermonitor
+
+  build-foldermonitor:
+    needs: ["test-foldermonitor"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build do projeto
+      run: mvn -B package -pl foldermonitor -Dmaven.test.skip=true
+# ---------------------------------------
+  checkstyle-batchprocessing:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando checkstyle
+      run: mvn checkstyle:check -pl batchprocessing -Dmaven.test.skip=true
+
+  pmd-batchprocessing:
+    needs: ["checkstyle-batchprocessing"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando PMD
+      run: mvn pmd:check -pl batchprocessing -Dmaven.test.skip=true
+
+  spotbugs-batchprocessing:
+    needs: ["pmd-batchprocessing"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando spotbugs
+      run: mvn spotbugs:check -pl batchprocessing -Dmaven.test.skip=true
+
+  test-batchprocessing:
+    needs: ["spotbugs-batchprocessing"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Teste do projeto
+      run: mvn -B test -pl batchprocessing
+
+  build-batchprocessing:
+    needs: ["test-batchprocessing"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build do projeto
+      run: mvn -B package -pl batchprocessing -Dmaven.test.skip=true
+# ---------------------------------------
