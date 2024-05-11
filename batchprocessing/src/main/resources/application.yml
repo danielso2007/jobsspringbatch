@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: batchprocessing
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DATA_BASE:batch_processing}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+  batch:
+    jdbc:
+      initialize-schema: always
+  jpa:
+    show-sql: true
+    open-in-view: false
+  flyway:
+      url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DATA_BASE:batch_processing}
+      user: ${DB_USER_APP:postgres}
+      password: ${DB_PASSWORD_APP:postgres}
+      locations: classpath:db/migration
+      baselineOnMigrate: true
+      validateOnMigrate: true
+      clean-disabled: false
+      enabled: ${FLYWAY_ENABLED:true}
