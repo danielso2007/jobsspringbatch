@@ -1,0 +1,10 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.format.settings.url": "../config/java-formatter.xml",
+    "java.jdt.ls.vmargs": "-Xshare:off",
+    "editor.formatOnSave": false,
+    "[java]": {
+        "editor.formatOnSave": true
+    }
+}

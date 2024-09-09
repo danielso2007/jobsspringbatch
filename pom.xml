@@ -13,6 +13,7 @@
         <module>foldermonitor</module>
         <module>migracaodedados</module>
         <module>batchProcessingSpringData</module>
+        <module>parallelStepsJob</module>
     </modules>
 
     <properties>

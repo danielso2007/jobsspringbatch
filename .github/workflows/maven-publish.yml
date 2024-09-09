@@ -14,8 +14,6 @@ on:
     - '**.json'
   pull_request:
     branches: [ "main", "release/**" ]
-    tags:        
-    - v*
     paths-ignore:
     - '**.md'
     - '**.sh'
