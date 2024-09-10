@@ -10,11 +10,11 @@ import com.springbatch.parallelsteps.code.dominio.DadosBancarios;
 
 @Configuration
 public class BancoDadosBancariosWriterConfig {
-	@Bean
-	public JdbcBatchItemWriter<DadosBancarios> bancoDadosBancariosWriter(
-			@Qualifier("appDataSource") DataSource dataSource) {
-		return new JdbcBatchItemWriterBuilder<DadosBancarios>().dataSource(dataSource).sql(
-				"INSERT INTO dados_bancarios (id, pessoa_id, agencia, conta, banco) VALUES (:id, :pessoaId, :agencia, :conta, :banco)")
-				.beanMapped().build();
-	}
+    @Bean
+    public JdbcBatchItemWriter<DadosBancarios> bancoDadosBancariosWriter(
+            @Qualifier("appDataSource") DataSource dataSource) {
+        return new JdbcBatchItemWriterBuilder<DadosBancarios>().dataSource(dataSource).sql(
+                "INSERT INTO dados_bancarios (id, pessoa_id, agencia, conta, banco) VALUES (:id, :pessoaId, :agencia, :conta, :banco)")
+                .beanMapped().build();
+    }
 }

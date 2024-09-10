@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.validation.BindException;
-
 import com.springbatch.processamentoassincrono.code.dominio.Pessoa;
 
 @Configuration

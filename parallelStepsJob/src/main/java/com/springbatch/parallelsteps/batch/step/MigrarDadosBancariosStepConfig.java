@@ -15,15 +15,15 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @RequiredArgsConstructor
 public class MigrarDadosBancariosStepConfig {
-	@Qualifier("transactionManagerApp")
-	private final PlatformTransactionManager transactionManagerApp;
+    @Qualifier("transactionManagerApp")
+    private final PlatformTransactionManager transactionManagerApp;
 
-	@Bean
-	public Step migrarDadosBancariosStep(JobRepository jobRepository,
-			ItemReader<DadosBancarios> arquivoDadosBancariosReader,
-			ItemWriter<DadosBancarios> bancoDadosBancariosWriter) {
-		return new StepBuilder("migrarDadosBancariosStepParalelo", jobRepository)
-				.<DadosBancarios, DadosBancarios>chunk(10000, transactionManagerApp).reader(arquivoDadosBancariosReader)
-				.writer(bancoDadosBancariosWriter).build();
-	}
+    @Bean
+    public Step migrarDadosBancariosStep(JobRepository jobRepository,
+            ItemReader<DadosBancarios> arquivoDadosBancariosReader,
+            ItemWriter<DadosBancarios> bancoDadosBancariosWriter) {
+        return new StepBuilder("migrarDadosBancariosStepParalelo", jobRepository)
+                .<DadosBancarios, DadosBancarios>chunk(10000, transactionManagerApp).reader(arquivoDadosBancariosReader)
+                .writer(bancoDadosBancariosWriter).build();
+    }
 }

@@ -13,29 +13,29 @@ import com.springbatch.parallelsteps.code.dominio.Pessoa;
 
 @Configuration
 public class ArquivoPessoaReaderConfig {
-	@Bean
-	public FlatFileItemReader<Pessoa> arquivoPessoaReader() {
-		return new FlatFileItemReaderBuilder<Pessoa>().name("arquivoPessoaReader")
-				.resource(new FileSystemResource("files/pessoas.csv")).delimited()
-				.names("nome", "email", "dataNascimento", "idade", "id").addComment("--")
-				.fieldSetMapper(fieldSetMapper())
-				// Quando for mostrar multithreading
-				.saveState(false).build();
-	}
+    @Bean
+    public FlatFileItemReader<Pessoa> arquivoPessoaReader() {
+        return new FlatFileItemReaderBuilder<Pessoa>().name("arquivoPessoaReader")
+                .resource(new FileSystemResource("files/pessoas.csv")).delimited()
+                .names("nome", "email", "dataNascimento", "idade", "id").addComment("--")
+                .fieldSetMapper(fieldSetMapper())
+                // Quando for mostrar multithreading
+                .saveState(false).build();
+    }
 
-	private FieldSetMapper<Pessoa> fieldSetMapper() {
-		return new FieldSetMapper<Pessoa>() {
-			@Override
-			public Pessoa mapFieldSet(final FieldSet fieldSet) throws BindException {
-				Pessoa pessoa = new Pessoa();
-				pessoa.setNome(fieldSet.readString("nome"));
-				pessoa.setEmail(fieldSet.readString("email"));
-				pessoa.setDataNascimento(
-						new Date(fieldSet.readDate("dataNascimento", "yyyy-MM-dd HH:mm:ss").getTime()));
-				pessoa.setIdade(fieldSet.readInt("idade"));
-				pessoa.setId(fieldSet.readInt("id"));
-				return pessoa;
-			}
-		};
-	}
+    private FieldSetMapper<Pessoa> fieldSetMapper() {
+        return new FieldSetMapper<Pessoa>() {
+            @Override
+            public Pessoa mapFieldSet(final FieldSet fieldSet) throws BindException {
+                Pessoa pessoa = new Pessoa();
+                pessoa.setNome(fieldSet.readString("nome"));
+                pessoa.setEmail(fieldSet.readString("email"));
+                pessoa.setDataNascimento(
+                        new Date(fieldSet.readDate("dataNascimento", "yyyy-MM-dd HH:mm:ss").getTime()));
+                pessoa.setIdade(fieldSet.readInt("idade"));
+                pessoa.setId(fieldSet.readInt("id"));
+                return pessoa;
+            }
+        };
+    }
 }

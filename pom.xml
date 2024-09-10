@@ -15,6 +15,7 @@
         <module>batchProcessingSpringData</module>
         <module>parallelStepsJob</module>
         <module>processamentoAssincrono</module>
+        <module>simplePartitionerLocalJob</module>
     </modules>
 
     <properties>

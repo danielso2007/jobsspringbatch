@@ -5,7 +5,6 @@ import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
-
 import com.springbatch.processamentoassincrono.code.dominio.DadosBancarios;
 
 @Configuration

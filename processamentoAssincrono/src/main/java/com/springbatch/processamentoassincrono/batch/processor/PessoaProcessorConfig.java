@@ -1,7 +1,6 @@
 package com.springbatch.processamentoassincrono.batch.processor;
 
 import java.util.concurrent.ThreadPoolExecutor;
-
 import org.springframework.batch.integration.async.AsyncItemProcessor;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +12,6 @@ import org.springframework.lang.Nullable;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
-
 import com.springbatch.processamentoassincrono.code.dominio.Pessoa;
 
 @Configuration
