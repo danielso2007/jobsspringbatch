@@ -14,6 +14,7 @@
         <module>migracaodedados</module>
         <module>batchProcessingSpringData</module>
         <module>parallelStepsJob</module>
+        <module>processamentoAssincrono</module>
     </modules>
 
     <properties>
