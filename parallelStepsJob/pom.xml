@@ -42,6 +42,18 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>10.17.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-database-postgresql</artifactId>
+			<version>10.17.3</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -79,16 +91,17 @@
 		</resources>
 		<plugins>
 			<plugin>
-				<groupId>com.redgate.flyway</groupId>
+				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
-				<version>10.12.0</version>
+				<version>10.17.3</version>
 				<configuration>
-					<url>jdbc:postgresql://localhost:5432/migracao_dados</url>
+					<url>jdbc:postgresql://localhost:5432/migracao_dados2</url>
 					<user>postgres</user>
 					<password>postgres</password>
 					<schemas>
 						<schema>public</schema>
 					</schemas>
+					<cleanDisabled>false</cleanDisabled>
 				</configuration>
 			</plugin>
 			<plugin>
