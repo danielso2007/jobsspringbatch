@@ -54,4 +54,15 @@ public class Pessoa {
         return !Strings.isBlank(nome) && !Strings.isBlank(email) && dataNascimento != null;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                " id='" + getId() + "'" +
+                ", nome='" + getNome() + "'" +
+                ", email='" + getEmail() + "'" +
+                ", dataNascimento='" + getDataNascimento() + "'" +
+                ", idade='" + getIdade() + "'" +
+                "}";
+    }
+
 }

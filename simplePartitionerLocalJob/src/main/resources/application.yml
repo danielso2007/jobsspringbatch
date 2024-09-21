@@ -31,5 +31,5 @@ app:
     driver-class-name: org.postgresql.Driver
 
 migracaodados:
-    totalRegistros: 2000
+    totalRegistros: ${TOTAL_REGISTROS_ARQUIVO:20000}
     gridSize: 10

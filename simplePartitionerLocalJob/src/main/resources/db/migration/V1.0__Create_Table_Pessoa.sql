@@ -8,5 +8,6 @@ CREATE TABLE public.pessoa (
     idade int4 NOT NULL,
     data_nascimento date NOT NULL,
     data_criacao timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    data_atualizacao timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL
+    data_atualizacao timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    CONSTRAINT pessoa_pkey PRIMARY KEY (id)
 );

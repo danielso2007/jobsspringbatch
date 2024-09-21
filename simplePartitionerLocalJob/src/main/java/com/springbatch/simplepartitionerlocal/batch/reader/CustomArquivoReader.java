@@ -10,11 +10,10 @@ import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
-public class CustomArquivoReader<T> implements ItemStreamReader<T>  {
+public class CustomArquivoReader<T> implements ItemStreamReader<T> {
 
     private FlatFileItemReader<T> delegate;
     private int itensLimit;
-
 
     public CustomArquivoReader(FlatFileItemReader<T> delegate, int itensLimit) {
         this.delegate = delegate;
@@ -46,5 +45,5 @@ public class CustomArquivoReader<T> implements ItemStreamReader<T>  {
     public void close() throws ItemStreamException {
         delegate.close();
     }
-    
+
 }

@@ -19,9 +19,10 @@ public class ArquivoPartitionerConfig implements Partitioner {
     @SuppressWarnings("null")
     @Override
     public Map<String, ExecutionContext> partition(int gridSize) {
-        Map<String, ExecutionContext> map = new HashMap<>();
+        Map<String, ExecutionContext> map = new HashMap<>(gridSize);
         for (int i = 0; i < gridSize; i++) {
             ExecutionContext context = new ExecutionContext();
+            context.put("partitionData", "simple data " + i);
             context.putInt("particao", i);
             map.put("partition" + i, context);
         }

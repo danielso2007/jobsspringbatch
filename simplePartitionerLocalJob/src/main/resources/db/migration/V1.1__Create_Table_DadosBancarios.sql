@@ -5,5 +5,6 @@ CREATE TABLE public.dados_bancarios (
     agencia int4 NOT NULL,
     conta int4 NOT NULL,
     data_criacao timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    data_atualizacao timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL
+    data_atualizacao timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    CONSTRAINT dados_bancarios_pkey PRIMARY KEY (id)
 );

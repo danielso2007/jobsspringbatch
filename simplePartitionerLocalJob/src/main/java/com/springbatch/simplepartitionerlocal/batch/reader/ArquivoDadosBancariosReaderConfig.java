@@ -23,7 +23,9 @@ public class ArquivoDadosBancariosReaderConfig {
     @Bean
     public CustomArquivoReader<DadosBancarios> arquivoDadosBancariosReader(
             @Value("#{stepExecutionContext['particao']}") Integer particao) {
-        return new CustomArquivoReader<>(dadosBancariosReaderFlat(particao), partitionerConfig.getItensLimit());
+        return new CustomArquivoReader<>(
+                dadosBancariosReaderFlat(partitionerConfig.calcularPrimeiroItemLeitura(particao)),
+                partitionerConfig.getItensLimit());
     }
 
     public FlatFileItemReader<DadosBancarios> dadosBancariosReaderFlat(int currentItemCount) {

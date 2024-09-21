@@ -27,17 +27,21 @@ public class ArquivoPessoaReaderConfig {
     @Bean
     public CustomArquivoReader<Pessoa> arquivoPessoaReader(
             @Value("#{stepExecutionContext['particao']}") Integer particao) {
-        return new CustomArquivoReader<>(arquivoPessoaReaderFlat(particao), partitionerConfig.getItensLimit());
+        return new CustomArquivoReader<>(
+                arquivoPessoaReaderFlat(partitionerConfig.calcularPrimeiroItemLeitura(particao)),
+                partitionerConfig.getItensLimit());
     }
 
     public FlatFileItemReader<Pessoa> arquivoPessoaReaderFlat(int currentItemCount) {
-        return new FlatFileItemReaderBuilder<Pessoa>().name("arquivoPessoaReader")
-                .resource(new FileSystemResource("files/pessoas.csv")).delimited()
-                .names("nome", "email", "dataNascimento", "idade", "id").addComment("--")
+        return new FlatFileItemReaderBuilder<Pessoa>()
+                .name("arquivoPessoaReader")
+                .resource(new FileSystemResource("files/pessoas.csv"))
+                .delimited()
+                .names("nome", "email", "dataNascimento", "idade", "id")
+                .addComment("--")
                 .fieldSetMapper(fieldSetMapper())
                 .currentItemCount(currentItemCount)
-                // Quando for mostrar multithreading
-                .saveState(false).build();
+                .build();
     }
 
     private FieldSetMapper<Pessoa> fieldSetMapper() {
