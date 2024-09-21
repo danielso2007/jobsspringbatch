@@ -6,4 +6,12 @@ spring:
       locations: classpath:db/migration
       baselineOnMigrate: true
       validateOnMigrate: true
+      clean-disabled: false
+      clean-on-validation-error: true
       enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
+    show-sql: true
+    open-in-view: false

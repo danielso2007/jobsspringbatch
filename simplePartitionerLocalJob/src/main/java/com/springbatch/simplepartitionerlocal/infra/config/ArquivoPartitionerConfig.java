@@ -16,6 +16,7 @@ public class ArquivoPartitionerConfig implements Partitioner {
     @Value("${migracaodados.gridSize}")
     private Integer gridSize;
 
+    @SuppressWarnings("null")
     @Override
     public Map<String, ExecutionContext> partition(int gridSize) {
         Map<String, ExecutionContext> map = new HashMap<>();

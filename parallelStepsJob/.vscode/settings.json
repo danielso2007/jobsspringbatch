@@ -2,9 +2,16 @@
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.compile.nullAnalysis.mode": "automatic",
     "java.format.settings.url": "../config/java-formatter.xml",
+    "java.configuration.maven.globalSettings": "/path/to/settings.xml",
+    "java.configuration.maven.userSettings": "/path/to/settings.xml",
     "java.jdt.ls.vmargs": "-Xshare:off",
+    "java.configuration.compiler.source": "22",
+    "java.configuration.compiler.target": "22",
     "editor.formatOnSave": false,
     "[java]": {
         "editor.formatOnSave": true
+    },
+    "sonarlint.connectedMode.project": {
+        "sonar.java.source": "22"
     }
 }
