@@ -31,8 +31,8 @@ public class PessoaProcessorConfig {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(6);
         executor.setMaxPoolSize(6);
-        executor.setQueueCapacity(8);
-        executor.setQueueCapacity(8);
+        executor.setQueueCapacity(6);
+        executor.setQueueCapacity(6);
         executor.setThreadNamePrefix("MultiThreaded-");
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         return executor;
@@ -49,6 +49,7 @@ public class PessoaProcessorConfig {
                                 pessoa.getId());
                         // System.out.println(uri);
                         ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
+                        System.out.println(response.getStatusCode());
                     } catch (RestClientResponseException e) {
                         System.out.println(e.getMessage());
                     }
