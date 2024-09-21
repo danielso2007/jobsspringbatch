@@ -17,9 +17,9 @@
 	<properties>
 		<java.version>22</java.version>
 		<maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
+		<maven.compiler.target>22</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -141,7 +141,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>3.3.1</version>
+				<version>3.5.0</version>
 				<configuration>
 					<configLocation>../config/checkstyle.xml</configLocation>
 					<consoleOutput>true</consoleOutput>
@@ -164,7 +164,7 @@
 				<!-- PMD source code analyzer -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
-				<version>3.21.2</version>
+				<version>3.25.0</version>
 				<configuration>
 					<linkXRef>true</linkXRef>
 					<failOnViolation>true</failOnViolation>
@@ -222,7 +222,19 @@
 					<!-- PMD source code analyzer -->
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-pmd-plugin</artifactId>
-					<version>3.21.2</version>
+					<version>3.25.0</version>
+					<dependencies>
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-core</artifactId>
+							<version>7.5.0</version>
+						</dependency>
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-java</artifactId>
+							<version>7.5.0</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -245,7 +257,7 @@
 				<!-- PMD source code analyzer -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
-				<version>3.21.2</version>
+				<version>3.25.0</version>
 				<configuration>
 					<rulesets>
 						<ruleset>/rulesets/java/braces.xml</ruleset>

@@ -19,6 +19,7 @@ public class PessoaProcessor implements ItemProcessor<Pessoa, Pessoa> {
                         pessoa.getId());
                 // System.out.println(uri);
                 ResponseEntity<String> response = restTemplate.getForEntity(uri, String.class);
+                System.out.println(response.getStatusCode());
             } catch (RestClientResponseException e) {
                 System.out.println(e.getMessage());
             }

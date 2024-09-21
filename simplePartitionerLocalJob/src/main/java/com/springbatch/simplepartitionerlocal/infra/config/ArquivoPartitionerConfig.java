@@ -29,7 +29,7 @@ public class ArquivoPartitionerConfig implements Partitioner {
     }
 
     public int calcularPrimeiroItemLeitura(Integer particao) {
-        Integer indexPrimeiroItem = (particao * (totalRegistros / gridSize));
+        Integer indexPrimeiroItem = particao * (totalRegistros / gridSize);
         return indexPrimeiroItem;
     }
 

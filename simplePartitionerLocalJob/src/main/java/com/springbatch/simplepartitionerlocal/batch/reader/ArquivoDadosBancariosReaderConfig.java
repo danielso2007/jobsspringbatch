@@ -15,15 +15,14 @@ public class ArquivoDadosBancariosReaderConfig {
 
     private ArquivoPartitionerConfig partitionerConfig;
 
-
     public ArquivoDadosBancariosReaderConfig(ArquivoPartitionerConfig partitionerConfig) {
         this.partitionerConfig = partitionerConfig;
     }
 
-
     @StepScope
     @Bean
-    public CustomArquivoReader<DadosBancarios> arquivoPessoaReader(@Value("${stepExecutionContext['particao']}") Integer particao) {
+    public CustomArquivoReader<DadosBancarios> arquivoDadosBancariosReader(
+            @Value("#{stepExecutionContext['particao']}") Integer particao) {
         return new CustomArquivoReader<>(dadosBancariosReaderFlat(particao), partitionerConfig.getItensLimit());
     }
 

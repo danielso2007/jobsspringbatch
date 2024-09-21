@@ -29,13 +29,13 @@ public class MigrarDadosBancariosStepConfig {
 
     @Bean
     public Step migrarDadosBancariosManager(JobRepository jobRepository,
-            ItemReader<DadosBancarios> arquivoPessoaReader,
-            ItemWriter<DadosBancarios> pessoaWriter,
+            ItemReader<DadosBancarios> arquivoDadosBancariosReader,
+            ItemWriter<DadosBancarios> bancoDadosWriter,
             Partitioner partitioner,
             TaskExecutor taskExecutor) {
         return new StepBuilder("migrarDadosBancariosStepPartitioner.manager", jobRepository)
                 .partitioner("migrarDadosBancariosStepPartitioner", partitioner)
-                .step(migrarDadosBancariosStep(jobRepository, arquivoPessoaReader, pessoaWriter))
+                .step(migrarDadosBancariosStep(jobRepository, arquivoDadosBancariosReader, bancoDadosWriter))
                 .gridSize(gridSize)
                 .taskExecutor(taskExecutor)
                 .build();

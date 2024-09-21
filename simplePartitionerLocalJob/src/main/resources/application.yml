@@ -21,6 +21,7 @@ spring:
       baselineOnMigrate: true
       validateOnMigrate: true
       clean-disabled: false
+      clean-on-validation-error: true
       enabled: true
 app:
   datasource:
@@ -30,5 +31,5 @@ app:
     driver-class-name: org.postgresql.Driver
 
 migracaodados:
-    totalRegistros: 20000
+    totalRegistros: 2000
     gridSize: 10

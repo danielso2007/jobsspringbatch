@@ -19,18 +19,17 @@ public class ArquivoPessoaReaderConfig {
 
     private ArquivoPartitionerConfig partitionerConfig;
 
-
     public ArquivoPessoaReaderConfig(ArquivoPartitionerConfig partitionerConfig) {
         this.partitionerConfig = partitionerConfig;
     }
 
-
     @StepScope
     @Bean
-    public CustomArquivoReader<Pessoa> arquivoPessoaReader(@Value("${stepExecutionContext['particao']}") Integer particao) {
+    public CustomArquivoReader<Pessoa> arquivoPessoaReader(
+            @Value("#{stepExecutionContext['particao']}") Integer particao) {
         return new CustomArquivoReader<>(arquivoPessoaReaderFlat(particao), partitionerConfig.getItensLimit());
     }
-    
+
     public FlatFileItemReader<Pessoa> arquivoPessoaReaderFlat(int currentItemCount) {
         return new FlatFileItemReaderBuilder<Pessoa>().name("arquivoPessoaReader")
                 .resource(new FileSystemResource("files/pessoas.csv")).delimited()
