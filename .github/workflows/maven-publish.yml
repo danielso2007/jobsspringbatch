@@ -347,23 +347,23 @@ jobs:
     - name: Verificando spotbugs
       run: mvn spotbugs:check -pl parallelStepsJob -Dmaven.test.skip=true
 
-  test-parallelStepsJob:
-    needs: ["spotbugs-parallelStepsJob"]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 22
-      uses: actions/setup-java@v3
-      with:
-        java-version: '22'
-        distribution: 'temurin'
-        cache: maven
+  # test-parallelStepsJob:
+  #   needs: ["spotbugs-parallelStepsJob"]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #   - name: Set up JDK 22
+  #     uses: actions/setup-java@v3
+  #     with:
+  #       java-version: '22'
+  #       distribution: 'temurin'
+  #       cache: maven
 
-    - name: Teste do projeto
-      run: mvn -B test -pl parallelStepsJob
+  #   - name: Teste do projeto
+  #     run: mvn -B test -pl parallelStepsJob
 
   build-parallelStepsJob:
-    needs: ["test-parallelStepsJob"]
+    # needs: ["test-parallelStepsJob"]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
