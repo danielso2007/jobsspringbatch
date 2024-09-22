@@ -13,7 +13,7 @@
     <artifactId>processamentoAssincrono</artifactId>
     <version>0.1.0</version>
     <name>processamentoAssincrono</name>
-    <description>Projeto pra estudo do spring batch</description>
+    <description>Projeto para estudo do spring batch</description>
     <properties>
         <java.version>22</java.version>
         <maven.compiler.source>22</maven.compiler.source>

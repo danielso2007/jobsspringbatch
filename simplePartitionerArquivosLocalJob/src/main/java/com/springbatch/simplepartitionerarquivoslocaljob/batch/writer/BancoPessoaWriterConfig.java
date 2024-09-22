@@ -1,4 +1,4 @@
-package com.springbatch.simplepartitionerlocal.batch.writer;
+package com.springbatch.simplepartitionerarquivoslocaljob.batch.writer;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilde
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.springbatch.simplepartitionerlocal.code.dominio.Pessoa;
+import com.springbatch.simplepartitionerarquivoslocaljob.code.dominio.Pessoa;
 
 @Configuration
 public class BancoPessoaWriterConfig {

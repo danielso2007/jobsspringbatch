@@ -1,10 +1,11 @@
-package com.springbatch.simplepartitionerlocal.batch.step;
+package com.springbatch.simplepartitionerarquivoslocaljob.batch.step;
 
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.partition.support.Partitioner;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.item.ItemReader;
+import org.springframework.batch.item.ItemStreamReader;
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,30 +13,33 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
-import com.springbatch.simplepartitionerlocal.code.dominio.DadosBancarios;
-import lombok.RequiredArgsConstructor;
+import com.springbatch.simplepartitionerarquivoslocaljob.code.dominio.DadosBancarios;
 
 @Configuration
-@RequiredArgsConstructor
 public class MigrarDadosBancariosStepConfig {
-    @Qualifier("transactionManagerApp")
+
     private final PlatformTransactionManager transactionManagerApp;
+    private final Integer totalRegistros;
+    private final Integer gridSize;
 
-    @Value("${migracaodados.totalRegistros}")
-    private Integer totalRegistros;
-
-    @Value("${migracaodados.gridSize}")
-    private Integer gridSize;
+    public MigrarDadosBancariosStepConfig(
+            @Qualifier("transactionManagerApp") PlatformTransactionManager transactionManagerApp,
+            @Value("${migracaodados.totalRegistros}") Integer totalRegistros,
+            @Value("${migracaodados.gridSize}") Integer gridSize) {
+        this.transactionManagerApp = transactionManagerApp;
+        this.totalRegistros = totalRegistros;
+        this.gridSize = gridSize;
+    }
 
     @Bean
     public Step migrarDadosBancariosManager(JobRepository jobRepository,
-            ItemReader<DadosBancarios> arquivoDadosBancariosReader,
-            JdbcBatchItemWriter<DadosBancarios> bancoDadosWriter,
-            Partitioner partitioner,
+            @Qualifier("dadosBancariosPartitioner") Partitioner dadosBancariosPartitioner,
+            @Qualifier("arquivoDadosBancariosPartitionReader") ItemStreamReader<DadosBancarios> arquivoDadosBancariosReader,
+            JdbcBatchItemWriter<DadosBancarios> dadosBancariosWriter,
             TaskExecutor taskExecutor) {
-        return new StepBuilder("migrarDadosBancariosStepPartitioner.manager", jobRepository)
-                .partitioner("migrarDadosBancariosStepPartitioner", partitioner)
-                .step(migrarDadosBancariosStep(jobRepository, arquivoDadosBancariosReader, bancoDadosWriter))
+        return new StepBuilder("migrarDadosBancariosStepArquivosPartitioner.manager", jobRepository)
+                .partitioner("migrarDadosBancariosStep.manager", dadosBancariosPartitioner)
+                .step(migrarDadosBancariosStep(jobRepository, arquivoDadosBancariosReader, dadosBancariosWriter))
                 .gridSize(gridSize)
                 .taskExecutor(taskExecutor)
                 .build();

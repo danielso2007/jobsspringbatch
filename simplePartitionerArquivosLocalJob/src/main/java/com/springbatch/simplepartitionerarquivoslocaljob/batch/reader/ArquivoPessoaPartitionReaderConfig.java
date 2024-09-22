@@ -1,4 +1,4 @@
-package com.springbatch.simplepartitionerlocal.batch.reader;
+package com.springbatch.simplepartitionerarquivoslocaljob.batch.reader;
 
 import java.util.Date;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -9,38 +9,24 @@ import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.validation.BindException;
-import com.springbatch.simplepartitionerlocal.code.dominio.Pessoa;
-import com.springbatch.simplepartitionerlocal.infra.config.ArquivoPartitionerConfig;
+import com.springbatch.simplepartitionerarquivoslocaljob.code.dominio.Pessoa;
 
 @Configuration
-public class ArquivoPessoaReaderConfig {
+public class ArquivoPessoaPartitionReaderConfig {
 
-    private ArquivoPartitionerConfig partitionerConfig;
-
-    public ArquivoPessoaReaderConfig(ArquivoPartitionerConfig partitionerConfig) {
-        this.partitionerConfig = partitionerConfig;
-    }
-
-    @StepScope
     @Bean
-    public CustomArquivoReader<Pessoa> arquivoPessoaReader(
-            @Value("#{stepExecutionContext['particao']}") Integer particao) {
-        return new CustomArquivoReader<>(
-                arquivoPessoaReaderFlat(partitionerConfig.calcularPrimeiroItemLeitura(particao)),
-                partitionerConfig.getItensLimit());
-    }
-
-    public FlatFileItemReader<Pessoa> arquivoPessoaReaderFlat(int currentItemCount) {
+    @StepScope
+    public FlatFileItemReader<Pessoa> arquivoPessoaPartitionReader(
+            @Value("#{stepExecutionContext['file']}") Resource resource) {
         return new FlatFileItemReaderBuilder<Pessoa>()
                 .name("arquivoPessoaReader")
-                .resource(new FileSystemResource("files/pessoas.csv"))
+                .resource(resource)
                 .delimited()
                 .names("nome", "email", "dataNascimento", "idade", "id")
                 .addComment("--")
                 .fieldSetMapper(fieldSetMapper())
-                .currentItemCount(currentItemCount)
                 .build();
     }
 
@@ -61,16 +47,4 @@ public class ArquivoPessoaReaderConfig {
         };
     }
 
-    @Bean
-    public FlatFileItemReader<Pessoa> arquivoPessoaReaderMultiResources() {
-        return new FlatFileItemReaderBuilder<Pessoa>()
-                .name("arquivoPessoaReader")
-                .resource(new FileSystemResource("files/pessoas.csv"))
-                .delimited()
-                .names("nome", "email", "dataNascimentoStr", "idade", "id")
-                .addComment("--")
-                .targetType(Pessoa.class)
-                .fieldSetMapper(fieldSetMapper())
-                .build();
-    }
 }

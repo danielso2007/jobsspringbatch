@@ -16,6 +16,7 @@
         <module>parallelStepsJob</module>
         <module>processamentoAssincrono</module>
         <module>simplePartitionerLocalJob</module>
+        <module>simplePartitionerArquivosLocalJob</module>
     </modules>
 
     <properties>

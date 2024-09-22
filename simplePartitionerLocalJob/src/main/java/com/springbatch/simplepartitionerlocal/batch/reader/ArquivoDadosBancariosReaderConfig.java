@@ -38,4 +38,15 @@ public class ArquivoDadosBancariosReaderConfig {
                 .targetType(DadosBancarios.class)
                 .build();
     }
+
+    @Bean
+    public FlatFileItemReader<DadosBancarios> dadosBancariosReaderFlatMultiResources() {
+        return new FlatFileItemReaderBuilder<DadosBancarios>().name("dadosBancariosReader")
+                .resource(new FileSystemResource("files/dados_bancarios.csv"))
+                .delimited()
+                .names("pessoaId", "agencia", "conta", "banco", "id")
+                .addComment("--")
+                .targetType(DadosBancarios.class)
+                .build();
+    }
 }

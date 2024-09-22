@@ -1,4 +1,4 @@
-package com.springbatch.simplepartitionerlocal.code.dominio;
+package com.springbatch.simplepartitionerarquivoslocaljob.code.dominio;
 
 import java.util.Date;
 import org.apache.logging.log4j.util.Strings;
@@ -65,13 +65,13 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "{" +
-                " id='" + getId() + "'" +
-                ", nome='" + getNome() + "'" +
-                ", email='" + getEmail() + "'" +
-                ", dataNascimento='" + getDataNascimento() + "'" +
-                ", idade='" + getIdade() + "'" +
-                "}";
+        return "{"
+                + " id='" + getId() + "'"
+                + ", nome='" + getNome() + "'"
+                + ", email='" + getEmail() + "'"
+                + ", dataNascimento='" + getDataNascimento() + "'"
+                + ", idade='" + getIdade() + "'"
+                + "}";
     }
 
 }

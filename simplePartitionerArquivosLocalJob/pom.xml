@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.springbatch</groupId>
-	<artifactId>simplePartitionerLocalJob</artifactId>
+	<artifactId>simplePartitionerArquivosLocalJob</artifactId>
 	<version>0.1.0</version>
-	<name>simplePartitionerLocalJob</name>
+	<name>simplePartitionerArquivosLocalJob</name>
 	<description>Projeto para estudo do spring batch</description>
 	<properties>
 		<java.version>22</java.version>
