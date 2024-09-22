@@ -12,6 +12,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 @ActiveProfiles("test")
 public abstract class AbstractIntegrationTest {
 
+    @SuppressWarnings("resource")
     static final PostgreSQLContainer<?> postgresContainer = new PostgreSQLContainer<>("postgres:16.2-alpine3.19")
             .withDatabaseName("migracao_dados3").withUsername("postgres").withPassword("postgres");
 

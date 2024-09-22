@@ -1,4 +1,4 @@
-package com.springbatch.dbpartitionerlocaljob.dominio;
+package com.springbatch.dbpartitionerlocaljob.code.dominio;
 
 import java.util.Date;
 

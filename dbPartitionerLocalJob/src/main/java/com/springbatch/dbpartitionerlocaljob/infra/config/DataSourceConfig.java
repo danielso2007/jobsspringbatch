@@ -1,4 +1,4 @@
-package com.springbatch.dbpartitionerlocaljob.config;
+package com.springbatch.dbpartitionerlocaljob.infra.config;
 
 import javax.sql.DataSource;
 
