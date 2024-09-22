@@ -14,8 +14,8 @@ public class DbPartitionerLocalJobConfig {
 
   @Bean
   public Job bdPartitionerLocalJob(final JobRepository jobRepository,
-      @Qualifier("migrarPessoaStep") final Step migrarPessoaStep,
-      @Qualifier("migrarDadosBancariosStep") final Step migrarDadosBancariosStep) {
+      @Qualifier("migrarPessoaManager") final Step migrarPessoaStep,
+      @Qualifier("migrarDadosBancariosManager") final Step migrarDadosBancariosStep) {
     return new JobBuilder("bdPartitionerLocalJob", jobRepository)
         .start(migrarPessoaStep)
         .next(migrarDadosBancariosStep)
