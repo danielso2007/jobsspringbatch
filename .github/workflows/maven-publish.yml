@@ -448,3 +448,74 @@ jobs:
     - name: Build do projeto
       run: mvn -B package -pl processamentoAssincrono -Dmaven.test.skip=true
 # ---------------------------------------
+  checkstyle-simplepartitionerarquivoslocaljob:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando checkstyle
+      run: mvn checkstyle:check -pl simplepartitionerarquivoslocaljob -Dmaven.test.skip=true
+
+  pmd-simplepartitionerarquivoslocaljob:
+    needs: ["checkstyle-simplepartitionerarquivoslocaljob"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando PMD
+      run: mvn pmd:check -pl simplepartitionerarquivoslocaljob -Dmaven.test.skip=true
+
+  spotbugs-simplepartitionerarquivoslocaljob:
+    needs: ["pmd-simplepartitionerarquivoslocaljob"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando spotbugs
+      run: mvn spotbugs:check -pl simplepartitionerarquivoslocaljob -Dmaven.test.skip=true
+
+  test-simplepartitionerarquivoslocaljob:
+    needs: ["spotbugs-simplepartitionerarquivoslocaljob"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Teste do projeto
+      run: mvn -B test -pl simplepartitionerarquivoslocaljob
+
+  build-simplepartitionerarquivoslocaljob:
+    needs: ["test-simplepartitionerarquivoslocaljob"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build do projeto
+      run: mvn -B package -pl simplepartitionerarquivoslocaljob -Dmaven.test.skip=true
+# ---------------------------------------
