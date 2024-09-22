@@ -448,7 +448,7 @@ jobs:
     - name: Build do projeto
       run: mvn -B package -pl processamentoAssincrono -Dmaven.test.skip=true
 # ---------------------------------------
-  checkstyle-simplepartitionerarquivoslocaljob:
+  checkstyle-simplePartitionerArquivosLocalJob:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -459,10 +459,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Verificando checkstyle
-      run: mvn checkstyle:check -pl simplepartitionerarquivoslocaljob -Dmaven.test.skip=true
+      run: mvn checkstyle:check -pl simplePartitionerArquivosLocalJob -Dmaven.test.skip=true
 
-  pmd-simplepartitionerarquivoslocaljob:
-    needs: ["checkstyle-simplepartitionerarquivoslocaljob"]
+  pmd-simplePartitionerArquivosLocalJob:
+    needs: ["checkstyle-simplePartitionerArquivosLocalJob"]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -473,10 +473,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Verificando PMD
-      run: mvn pmd:check -pl simplepartitionerarquivoslocaljob -Dmaven.test.skip=true
+      run: mvn pmd:check -pl simplePartitionerArquivosLocalJob -Dmaven.test.skip=true
 
-  spotbugs-simplepartitionerarquivoslocaljob:
-    needs: ["pmd-simplepartitionerarquivoslocaljob"]
+  spotbugs-simplePartitionerArquivosLocalJob:
+    needs: ["pmd-simplePartitionerArquivosLocalJob"]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -487,10 +487,10 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Verificando spotbugs
-      run: mvn spotbugs:check -pl simplepartitionerarquivoslocaljob -Dmaven.test.skip=true
+      run: mvn spotbugs:check -pl simplePartitionerArquivosLocalJob -Dmaven.test.skip=true
 
-  test-simplepartitionerarquivoslocaljob:
-    needs: ["spotbugs-simplepartitionerarquivoslocaljob"]
+  test-simplePartitionerArquivosLocalJob:
+    needs: ["spotbugs-simplePartitionerArquivosLocalJob"]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -502,10 +502,10 @@ jobs:
         cache: maven
 
     - name: Teste do projeto
-      run: mvn -B test -pl simplepartitionerarquivoslocaljob
+      run: mvn -B test -pl simplePartitionerArquivosLocalJob
 
-  build-simplepartitionerarquivoslocaljob:
-    needs: ["test-simplepartitionerarquivoslocaljob"]
+  build-simplePartitionerArquivosLocalJob:
+    needs: ["test-simplePartitionerArquivosLocalJob"]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -517,5 +517,5 @@ jobs:
         cache: maven
 
     - name: Build do projeto
-      run: mvn -B package -pl simplepartitionerarquivoslocaljob -Dmaven.test.skip=true
+      run: mvn -B package -pl simplePartitionerArquivosLocalJob -Dmaven.test.skip=true
 # ---------------------------------------
