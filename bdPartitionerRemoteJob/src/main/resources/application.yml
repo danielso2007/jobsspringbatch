@@ -2,7 +2,7 @@ server:
   port: 8081
 spring:
   datasource:
-    jdbcUrl: jdbc:postgresql://localhost:5432/spring_batch_bdPartitionerRemoteJob
+    jdbcUrl: jdbc:postgresql://${DB_HOST_APP:localhost}:${DB_PORT_APP:5432}/${DATA_BASE:spring_batch_bdPartitionerRemoteJob}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
