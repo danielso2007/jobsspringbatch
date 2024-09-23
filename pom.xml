@@ -17,6 +17,8 @@
         <module>processamentoAssincrono</module>
         <module>simplePartitionerLocalJob</module>
         <module>simplePartitionerArquivosLocalJob</module>
+        <module>dbPartitionerLocalJob</module>
+        <module>bdPartitionerRemoteJob</module>
     </modules>
 
     <properties>
