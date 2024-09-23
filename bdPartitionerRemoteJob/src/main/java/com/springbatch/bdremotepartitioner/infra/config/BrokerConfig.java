@@ -17,12 +17,12 @@ public class BrokerConfig {
 
     @Bean
     public ActiveMQConnectionFactory connectionFactory() {
-        ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
-        activeMQConnectionFactory.setBrokerURL(this.brokerUrl);
-        activeMQConnectionFactory.setUserName(this.username);
-        activeMQConnectionFactory.setPassword(this.password);
-        activeMQConnectionFactory.setTrustAllPackages(true);
-        return activeMQConnectionFactory;
+        ActiveMQConnectionFactory activeMqConnectionFactory = new ActiveMQConnectionFactory();
+        activeMqConnectionFactory.setBrokerURL(this.brokerUrl);
+        activeMqConnectionFactory.setUserName(this.username);
+        activeMqConnectionFactory.setPassword(this.password);
+        activeMqConnectionFactory.setTrustAllPackages(true);
+        return activeMqConnectionFactory;
     }
 
 }
