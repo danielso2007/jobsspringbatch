@@ -1,6 +1,8 @@
+server:
+  port: 8081
 spring:
   datasource:
-    jdbcUrl: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DATA_BASE:spring_batch_dbpartitionerlocaljob}
+    jdbcUrl: jdbc:postgresql://localhost:5432/spring_batch_bdPartitionerRemoteJob
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
@@ -20,9 +22,9 @@ spring:
       locations: classpath:db/migration
       baselineOnMigrate: true
       validateOnMigrate: true
-      clean-disabled: false
-      clean-on-validation-error: true
-      enabled: true
+      clean-disabled: true
+      clean-on-validation-error: false
+      enabled: false
 app:
   datasource:
     jdbcUrl: jdbc:postgresql://${DB_HOST_APP:localhost}:${DB_PORT_APP:5432}/${DATA_BASE:migracao_dados3}
@@ -32,4 +34,8 @@ app:
 
 migracaodados:
     totalRegistros: ${TOTAL_REGISTROS_ARQUIVO:20000}
-    gridSize: 10
+    gridSize: ${TOTAL_REGISTROS_ARQUIVO:10}
+broker:
+  url: tcp://localhost:61616
+  username: admin
+  password: admin

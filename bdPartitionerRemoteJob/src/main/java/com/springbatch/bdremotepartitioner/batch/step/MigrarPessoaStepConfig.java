@@ -9,10 +9,12 @@ import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
 import com.springbatch.bdremotepartitioner.core.dominio.Pessoa;
 
+@Profile("localPartitioner")
 @Configuration
 public class MigrarPessoaStepConfig {
 

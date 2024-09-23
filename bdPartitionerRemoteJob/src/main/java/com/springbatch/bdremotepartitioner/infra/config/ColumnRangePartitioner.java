@@ -11,9 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class ColumnRangePartitioner implements Partitioner {
 
     private JdbcOperations jdbcTemplate;
-
     private String table;
-
     private String column;
 
     public void setTable(String table) {

@@ -10,25 +10,34 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import com.springbatch.bdremotepartitioner.core.dominio.DadosBancarios;
 
 @Configuration
 public class BancoDadosBancariosReaderConfig {
+
+    private final DataSource dataSource;
+
+    public BancoDadosBancariosReaderConfig(
+            @Qualifier("appDataSource") final DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    @Lazy
     @StepScope
     @Bean
     public JdbcPagingItemReader<DadosBancarios> dadosBancariosReader(
-            @Qualifier("appDataSource") DataSource dataSource,
             @Qualifier("queryProviderDadosBancarios") PagingQueryProvider queryProvider) {
         return new JdbcPagingItemReaderBuilder<DadosBancarios>().name("dadosBancariosReader")
                 .dataSource(dataSource).queryProvider(queryProvider).pageSize(2000)
                 .rowMapper(new BeanPropertyRowMapper<>(DadosBancarios.class)).build();
     }
 
+    @Lazy
     @StepScope
     @Bean
     public SqlPagingQueryProviderFactoryBean queryProviderDadosBancarios(
-            @Qualifier("appDataSource") DataSource dataSource,
             @Value("#{stepExecutionContext['minValue']}") Long minValue,
             @Value("#{stepExecutionContext['maxValue']}") Long maxValue) {
         SqlPagingQueryProviderFactoryBean queryProvider = new SqlPagingQueryProviderFactoryBean();

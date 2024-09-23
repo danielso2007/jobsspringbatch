@@ -10,26 +10,35 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import com.springbatch.bdremotepartitioner.core.dominio.Pessoa;
 
 @Configuration
 public class BancoPessoaReaderConfig {
 
+    private final DataSource dataSource;
+
+    public BancoPessoaReaderConfig(@Qualifier("appDataSource") final DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    @Lazy
     @StepScope
     @Bean
     public JdbcPagingItemReader<Pessoa> pessoaReader(
-            @Qualifier("appDataSource") DataSource dataSource,
             @Qualifier("queryProviderPessoa") PagingQueryProvider queryProvider) {
-        return new JdbcPagingItemReaderBuilder<Pessoa>().name("pessoaReader").dataSource(dataSource)
-                .queryProvider(queryProvider).pageSize(2000)
-                .rowMapper(new BeanPropertyRowMapper<>(Pessoa.class)).build();
+        return new JdbcPagingItemReaderBuilder<Pessoa>()
+            .name("pessoaReader").dataSource(dataSource)
+            .queryProvider(queryProvider).pageSize(2000)
+            .rowMapper(new BeanPropertyRowMapper<>(Pessoa.class))
+            .build();
     }
 
+    @Lazy
     @StepScope
     @Bean
     public SqlPagingQueryProviderFactoryBean queryProviderPessoa(
-            @Qualifier("appDataSource") DataSource dataSource,
             @Value("#{stepExecutionContext['minValue']}") Long minValue,
             @Value("#{stepExecutionContext['maxValue']}") Long maxValue) {
         SqlPagingQueryProviderFactoryBean queryProvider = new SqlPagingQueryProviderFactoryBean();

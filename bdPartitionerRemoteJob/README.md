@@ -2,6 +2,15 @@
 
 ## Sugestão de execução
 
+### ActiveMQ
+
+Usar o docker composer local: `docker compose up -d`
+
+Endereço: [http://localhost:8161/](http://localhost:8161/)
+
+- Login: admin
+- Senha: admin
+
 #### Usar docker para o banco de dados:
 
 Ver: [postgres_with_pgadmin4_using_docker](https://github.com/danielso2007/postgres_with_pgadmin4_using_docker)
@@ -22,7 +31,26 @@ Executar: `mvn flyway:clean`
 
 ## Executando a aplicação
 
-Executar: `mvn flyway:clean && clear && mvn package && mvn spring-boot:run`
+Executando o worker:  `clear && mvn package -Dmaven.test.skip=true && mvn spring-boot:run -Dspring-boot.run.profiles=worker`
+
+Executando o manager:  `clear && mvn package -Dmaven.test.skip=true && mvn spring-boot:run -Dspring-boot.run.profiles=manager`
+
+Você pode usar o profile do maven também:
+
+Executando o worker:  `clear && mvn package -Dmaven.test.skip=true && mvn spring-boot:run -Pworker`
+
+Executando o manager:  `clear && mvn package -Dmaven.test.skip=true && mvn spring-boot:run -Pmanager`
+
+## Genrenciando o banco no vscode com flyway
+
+Pressione `Ctrl+Shift+P` (ou `Cmd+Shift+P`) para abrir o Command Palette.
+
+Digite `Run Task` e selecione a tarefa:
+
+- `run-maven-command-flyway-clean` : Limpa o banco de dados
+- `run-maven-command-flyway-migrate` : Cria as tabelas e dados
+- `run-maven-command` : Clean e package da aplicação
+
 
 ## Testes unitários
 

@@ -7,8 +7,15 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class BdPartitionerConfig {
+
+    private final DataSource dataSource;
+
+    public BdPartitionerConfig(@Qualifier("appDataSource") final DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     @Bean
-    public ColumnRangePartitioner pessoaPartitioner(@Qualifier("appDataSource") DataSource dataSource) {
+    public ColumnRangePartitioner pessoaPartitioner() {
         ColumnRangePartitioner partitioner = new ColumnRangePartitioner();
         partitioner.setTable("pessoa_origem");
         partitioner.setColumn("id");
@@ -17,7 +24,7 @@ public class BdPartitionerConfig {
     }
 
     @Bean
-    public ColumnRangePartitioner dadosBancariosPartitioner(@Qualifier("appDataSource") DataSource dataSource) {
+    public ColumnRangePartitioner dadosBancariosPartitioner() {
         ColumnRangePartitioner partitioner = new ColumnRangePartitioner();
         partitioner.setTable("dados_bancarios_origem");
         partitioner.setColumn("id");

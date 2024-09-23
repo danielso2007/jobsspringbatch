@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Worker BdPartitionerRemoteJobApplication",
+            "request": "launch",
+            "mainClass": "com.springbatch.bdremotepartitioner.BdPartitionerRemoteJobApplication",
+            "projectName": "bdPartitionerRemoteJob",
+            "args": [
+                "--spring.profiles.active=worker",
+                "-Dspring-boot.run.arguments=--server.port=8001"
+            ],
+            "env": {
+                "TOTAL_REGISTROS_ARQUIVO": 10
+            },
+            "preLaunchTask": "run-maven-command"
+        },
+        {
+            "type": "java",
+            "name": "Manager BdPartitionerRemoteJobApplication",
+            "request": "launch",
+            "mainClass": "com.springbatch.bdremotepartitioner.BdPartitionerRemoteJobApplication",
+            "projectName": "bdPartitionerRemoteJob",
+            "args": [
+                "--spring.profiles.active=manager",
+                "-Dspring-boot.run.arguments=--server.port=8002"
+            ],
+            "env": {
+                "TOTAL_REGISTROS_ARQUIVO": 10
+            },
+            "preLaunchTask": "run-maven-command"
+        }
+    ]
+}
