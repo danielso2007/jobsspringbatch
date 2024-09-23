@@ -10,25 +10,24 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
-
 import com.springbatch.dbpartitionerlocaljob.batch.step.StepConfig;
 import com.springbatch.dbpartitionerlocaljob.code.dominio.DadosBancarios;
 
 @Configuration
 public class MigrarDadosBancariosStepConfig extends StepConfig<DadosBancarios> {
 
-  public MigrarDadosBancariosStepConfig(final JobRepository jobRepository,
-      final @Qualifier("transactionManagerApp") PlatformTransactionManager transactionManagerApp) {
-    super("migrarDadosBancarios", jobRepository, transactionManagerApp, null, null);
-  }
+    public MigrarDadosBancariosStepConfig(final JobRepository jobRepository,
+            final @Qualifier("transactionManagerApp") PlatformTransactionManager transactionManagerApp) {
+        super("migrarDadosBancarios", jobRepository, transactionManagerApp, null, null);
+    }
 
-  @Bean
-  public Step migrarDadosBancariosManager(
-      @Qualifier("dadosBancariosPartitioner") Partitioner partitioner,
-      @Qualifier("dadosBancariosReader") ItemReader<DadosBancarios> reader,
-      @Qualifier("dadosBancariosWriter") ItemWriter<DadosBancarios> writer,
-      TaskExecutor taskExecutor) {
-    return manager(partitioner, reader, writer, taskExecutor);
-  }
+    @Bean
+    public Step migrarDadosBancariosManager(
+            @Qualifier("dadosBancariosPartitioner") Partitioner partitioner,
+            @Qualifier("dadosBancariosReader") ItemReader<DadosBancarios> reader,
+            @Qualifier("dadosBancariosWriter") ItemWriter<DadosBancarios> writer,
+            TaskExecutor taskExecutor) {
+        return manager(partitioner, reader, writer, taskExecutor);
+    }
 
 }

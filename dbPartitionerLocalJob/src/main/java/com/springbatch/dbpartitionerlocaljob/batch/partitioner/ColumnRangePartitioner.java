@@ -20,14 +20,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class ColumnRangePartitioner implements Partitioner {
 
     private JdbcOperations jdbcTemplate;
-
     private String table;
-
     private String column;
 
     /**
      * O nome da tabela SQL onde os dados estão.
-     * 
+     *
      * @param table the name of the table
      */
     public void setTable(String table) {
@@ -36,7 +34,7 @@ public class ColumnRangePartitioner implements Partitioner {
 
     /**
      * O nome da coluna a ser particionada.
-     * 
+     *
      * @param column the column name.
      */
     public void setColumn(String column) {
@@ -45,7 +43,7 @@ public class ColumnRangePartitioner implements Partitioner {
 
     /**
      * A fonte de dados para conexão ao banco de dados.
-     * 
+     *
      * @param dataSource a {@link DataSource}
      */
     public void setDataSource(DataSource dataSource) {

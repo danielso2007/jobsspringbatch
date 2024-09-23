@@ -10,10 +10,10 @@ import com.springbatch.dbpartitionerlocaljob.code.dominio.DadosBancarios;
 
 @Configuration
 public class BancoDadosBancariosWriterConfig implements WriterConfig<DadosBancarios> {
-  @Bean
-  public JdbcBatchItemWriter<DadosBancarios> dadosBancariosWriter(
-      @Qualifier("appDataSource") DataSource dataSource) {
-    return writer(dataSource,
-        "INSERT INTO dados_bancarios (id, pessoa_id, agencia, conta, banco) VALUES (:id, :pessoaId, :agencia, :conta, :banco)");
-  }
+    @Bean
+    public JdbcBatchItemWriter<DadosBancarios> dadosBancariosWriter(
+            @Qualifier("appDataSource") DataSource dataSource) {
+        return writer(dataSource,
+                "INSERT INTO dados_bancarios (id, pessoa_id, agencia, conta, banco) VALUES (:id, :pessoaId, :agencia, :conta, :banco)");
+    }
 }

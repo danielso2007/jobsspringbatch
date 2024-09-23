@@ -15,24 +15,24 @@ import com.springbatch.dbpartitionerlocaljob.code.dominio.DadosBancarios;
 @Configuration
 public class BancoDadosBancariosReaderConfig extends ReaderConfig<DadosBancarios> {
 
-  protected BancoDadosBancariosReaderConfig(@Qualifier("appDataSource") final DataSource dataSource,
-      @Qualifier("queryProviderDadosBancarios") final PagingQueryProvider pagingQueryProvider) {
-    super(dataSource, 2000, "dadosBancarios", pagingQueryProvider, "*", "FROM dados_bancarios_origem", "id",
-        "WHERE id >= %d AND id <= %d");
-  }
+    protected BancoDadosBancariosReaderConfig(@Qualifier("appDataSource") final DataSource dataSource,
+            @Qualifier("queryProviderDadosBancarios") final PagingQueryProvider pagingQueryProvider) {
+        super(dataSource, 2000, "dadosBancarios", pagingQueryProvider, "*", "FROM dados_bancarios_origem", "id",
+                "WHERE id >= %d AND id <= %d");
+    }
 
-  @StepScope
-  @Bean
-  public JdbcPagingItemReader<DadosBancarios> dadosBancariosReader() {
-    return reader();
-  }
+    @StepScope
+    @Bean
+    public JdbcPagingItemReader<DadosBancarios> dadosBancariosReader() {
+        return reader();
+    }
 
-  @StepScope
-  @Bean
-  public SqlPagingQueryProviderFactoryBean queryProviderDadosBancarios(
-      @Value("#{stepExecutionContext['minValue']}") final Long minValue,
-      @Value("#{stepExecutionContext['maxValue']}") final Long maxValue) {
-    return queryProvider(minValue, maxValue);
-  }
+    @StepScope
+    @Bean
+    public SqlPagingQueryProviderFactoryBean queryProviderDadosBancarios(
+            @Value("#{stepExecutionContext['minValue']}") final Long minValue,
+            @Value("#{stepExecutionContext['maxValue']}") final Long maxValue) {
+        return queryProvider(minValue, maxValue);
+    }
 
 }

@@ -12,13 +12,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DbPartitionerLocalJobConfig {
 
-  @Bean
-  public Job bdPartitionerLocalJob(final JobRepository jobRepository,
-      @Qualifier("migrarPessoaManager") final Step migrarPessoaStep,
-      @Qualifier("migrarDadosBancariosManager") final Step migrarDadosBancariosStep) {
-    return new JobBuilder("bdPartitionerLocalJob", jobRepository)
-        .start(migrarPessoaStep)
-        .next(migrarDadosBancariosStep)
-        .incrementer(new RunIdIncrementer()).build();
-  }
+    @Bean
+    public Job bdPartitionerLocalJob(final JobRepository jobRepository,
+            @Qualifier("migrarPessoaManager") final Step migrarPessoaStep,
+            @Qualifier("migrarDadosBancariosManager") final Step migrarDadosBancariosStep) {
+        return new JobBuilder("bdPartitionerLocalJob", jobRepository)
+                .start(migrarPessoaStep)
+                .next(migrarDadosBancariosStep)
+                .incrementer(new RunIdIncrementer()).build();
+    }
 }

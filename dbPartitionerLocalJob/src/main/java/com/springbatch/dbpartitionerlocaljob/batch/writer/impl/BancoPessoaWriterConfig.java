@@ -10,9 +10,9 @@ import com.springbatch.dbpartitionerlocaljob.code.dominio.Pessoa;
 
 @Configuration
 public class BancoPessoaWriterConfig implements WriterConfig<Pessoa> {
-  @Bean
-  public JdbcBatchItemWriter<Pessoa> pessoaWriter(@Qualifier("appDataSource") DataSource dataSource) {
-    return writer(dataSource,
-        "INSERT INTO pessoa (id, nome, email, data_nascimento, idade) VALUES (:id, :nome, :email, :dataNascimento, :idade)");
-  }
+    @Bean
+    public JdbcBatchItemWriter<Pessoa> pessoaWriter(@Qualifier("appDataSource") DataSource dataSource) {
+        return writer(dataSource,
+                "INSERT INTO pessoa (id, nome, email, data_nascimento, idade) VALUES (:id, :nome, :email, :dataNascimento, :idade)");
+    }
 }

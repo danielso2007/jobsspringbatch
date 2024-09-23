@@ -15,24 +15,24 @@ import com.springbatch.dbpartitionerlocaljob.code.dominio.Pessoa;
 @Configuration
 public class BancoPessoaReaderConfig extends ReaderConfig<Pessoa> {
 
-  protected BancoPessoaReaderConfig(@Qualifier("appDataSource") final DataSource dataSource,
-      @Qualifier("queryProviderPessoa") final PagingQueryProvider pagingQueryProvider) {
-    super(dataSource, 2000, "pessoa", pagingQueryProvider, "*", "FROM pessoa_origem", "id",
-        "WHERE id >= %d AND id <= %d");
-  }
+    protected BancoPessoaReaderConfig(@Qualifier("appDataSource") final DataSource dataSource,
+            @Qualifier("queryProviderPessoa") final PagingQueryProvider pagingQueryProvider) {
+        super(dataSource, 2000, "pessoa", pagingQueryProvider, "*", "FROM pessoa_origem", "id",
+                "WHERE id >= %d AND id <= %d");
+    }
 
-  @StepScope
-  @Bean
-  public JdbcPagingItemReader<Pessoa> pessoaReader() {
-    return reader();
-  }
+    @StepScope
+    @Bean
+    public JdbcPagingItemReader<Pessoa> pessoaReader() {
+        return reader();
+    }
 
-  @StepScope
-  @Bean
-  public SqlPagingQueryProviderFactoryBean queryProviderPessoa(
-      @Value("#{stepExecutionContext['minValue']}") final Long minValue,
-      @Value("#{stepExecutionContext['maxValue']}") final Long maxValue) {
-    return queryProvider(minValue, maxValue);
-  }
+    @StepScope
+    @Bean
+    public SqlPagingQueryProviderFactoryBean queryProviderPessoa(
+            @Value("#{stepExecutionContext['minValue']}") final Long minValue,
+            @Value("#{stepExecutionContext['maxValue']}") final Long maxValue) {
+        return queryProvider(minValue, maxValue);
+    }
 
 }

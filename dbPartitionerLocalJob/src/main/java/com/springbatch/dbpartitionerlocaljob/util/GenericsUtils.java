@@ -11,8 +11,9 @@ public class GenericsUtils {
     }
 
     public static GenericsUtils getInstance() {
-        if (singleInstance == null)
+        if (singleInstance == null) {
             singleInstance = new GenericsUtils();
+        }
         return singleInstance;
     }
 

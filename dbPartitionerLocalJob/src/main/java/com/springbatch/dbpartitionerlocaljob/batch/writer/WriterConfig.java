@@ -1,7 +1,6 @@
 package com.springbatch.dbpartitionerlocaljob.batch.writer;
 
 import javax.sql.DataSource;
-
 import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 
