@@ -590,3 +590,75 @@ jobs:
     - name: Build do projeto
       run: mvn -B package -pl dbPartitionerLocalJob -Dmaven.test.skip=true
 # ---------------------------------------
+  checkstyle-bdPartitionerRemoteJob:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando checkstyle
+      run: mvn checkstyle:check -pl bdPartitionerRemoteJob -Dmaven.test.skip=true
+
+  pmd-bdPartitionerRemoteJob:
+    needs: ["checkstyle-bdPartitionerRemoteJob"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando PMD
+      run: mvn pmd:check -pl bdPartitionerRemoteJob -Dmaven.test.skip=true
+
+  spotbugs-bdPartitionerRemoteJob:
+    needs: ["pmd-bdPartitionerRemoteJob"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+    - name: Verificando spotbugs
+      run: mvn spotbugs:check -pl bdPartitionerRemoteJob -Dmaven.test.skip=true
+
+  test-bdPartitionerRemoteJob:
+    needs: ["spotbugs-bdPartitionerRemoteJob"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Teste do projeto
+      run: mvn -B test -pl bdPartitionerRemoteJob
+
+  build-bdPartitionerRemoteJob:
+    needs: ["test-bdPartitionerRemoteJob"]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 22
+      uses: actions/setup-java@v3
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Build do projeto
+      run: mvn -B package -pl bdPartitionerRemoteJob -Dmaven.test.skip=true
+# ---------------------------------------
+  

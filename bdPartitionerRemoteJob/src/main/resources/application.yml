@@ -1,6 +1,6 @@
 spring:
   datasource:
-    jdbcUrl: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DATA_BASE:spring_batch_bdPartitionerRemoteJob}
+    jdbcUrl: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DATA_BASE:spring_batch_dbpartitionerlocaljob}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
@@ -29,3 +29,7 @@ app:
     username: ${DB_USER_APP:postgres}
     password: ${DB_PASSWORD_APP:postgres}
     driver-class-name: org.postgresql.Driver
+
+migracaodados:
+    totalRegistros: ${TOTAL_REGISTROS_ARQUIVO:20000}
+    gridSize: 10
